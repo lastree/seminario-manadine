@@ -1,4 +1,3 @@
-
 #install.packages('xgboost')
 #install.packages('caret')
 #install.packages('e1071')
@@ -20,43 +19,13 @@ data <- read.csv(???, sep = ???, header = ???)
 head(data)
 
 # Primera partición: Obtención del conjunto de test
-n <- nrow(data)
-set.seed(0)
-train_index <- sample(???, size = ???)
 
-entrenamiento <- data[train_index, ]  # Conjunto aún a dividir entre entrenamiento y validación
-df_test <- data[-train_index, ]
+# Pista: la librería caret tiene funciones maravillosas para partir conjuntos de datos preservando la distribución de las clases y para hacer downsampling ^^
+df_test <- ?
+df_train <- ?
+df_valid <- ?
 
-# Segunda partición: Obtención de los conjuntos de entrenamiento y validación
-# IMPORTANTE!!: Balanceo de datasets. ¿Por qué?
-cat('No defectos en el conjunto:', nrow(entrenamiento[entrenamiento$defecto == 0, ]), '\n')
-cat('Defectos en conjunto:', nrow(entrenamiento[entrenamiento$defecto == 1, ]))
-
-# Segunda partición.
-
-# Balanceo de conjuntos.
-df_majority <- ???
-df_minority <- ???
-
-n_under <- nrow(df_minority)
-n_over <- nrow(df_majority)
-
-set.seed(0)
-under_index <- sample(???, size = ???)
-
-df_majority_undersampled <- df_majority[under_index, ]
-
-# Concatenamos de nuevo los conjuntos balanceados.
-entrenamiento_balanceado <- rbind(???, ???)
-
-n2 <- nrow(entrenamiento_balanceado)
-set.seed(0)
-train_index2 <- sample(x = ???, size = ???)
-
-df_train <- entrenamiento_balanceado[train_index2, ]
-df_valid <- entrenamiento_balanceado[-train_index2, ]
-
-# Tamaño final de los conjuntos.
+ Tamaño final de los conjuntos.
 cat('Tamaño del conjunto de entrenamiento:', nrow(df_train), '\n')
 cat('Tamaño del conjunto de validación:', nrow(df_valid), '\n')
 cat('Tamaño del conjunto de test:', nrow(df_test))
